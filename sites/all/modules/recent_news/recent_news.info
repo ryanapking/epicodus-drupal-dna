@@ -1,0 +1,5 @@
+name = Recent News
+description = Defines the AJAX functionality to replace a div with a news article.
+package = AJAX
+core = 7.x
+files[] = recent_news.module
