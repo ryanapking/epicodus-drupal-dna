@@ -21,5 +21,4 @@ function recent_news($js, $nid) {
     $commands[] = ajax_command_html('#news-ajax-wrapper', $html);
     print ajax_render($commands);
     exit;
-
 }
