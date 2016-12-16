@@ -55,7 +55,7 @@ function dna_success() {
     $original = $_SESSION['dna_original'];
     $results = $_SESSION['dna_results'];
     return "
-        <p>Sequence Entered: $original </p>
+        <p>Original Sequence: $original </p>
         <p>Matching Sequence: $results </p>
     ";
 }

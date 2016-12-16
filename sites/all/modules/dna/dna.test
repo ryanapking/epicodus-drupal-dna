@@ -36,6 +36,7 @@ class dnaFunctionalTestCase extends DrupalWebTestCase {
 
     public function testDNAForm() {
         $this->drupalGet('dna_match');
+
         $string_to_find = 'Enter one half of a DNA Helix and the other half will be returned.';
         $this->assertText($string_to_find, 'The text on the page is correct');
 
@@ -46,5 +47,16 @@ class dnaFunctionalTestCase extends DrupalWebTestCase {
         $field_name = 'submit_button';
         $field_value = 'Submit';
         $this->assertFieldByName($field_name, $field_value, $message = 'Submit button exists.');
+
+        $edit = array();
+        $edit['sequence'] = 'ACGT';
+        $this->drupalPost(NULL, $edit, 'Submit');
+
+        $this->assertText('Original Sequence: ACGT', 'Confirmed page text.');
+        $this->assertText('Matching Sequence: TGCA', 'Confirmed page text.');
+    }
+
+    public function testSuccessPage() {
+
     }
 }
