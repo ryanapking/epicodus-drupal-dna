@@ -1,8 +1,8 @@
 <?php
-class dnaTestCase extends DrupalUnitTestCase {
+class dnaUnitTestCase extends DrupalUnitTestCase {
     public static function getInfo() {
         return array(
-            'name' => 'DNA Module Tests',
+            'name' => 'DNA Module Unit Tests',
             'description' => 'Tests that the DNA module functions are behaving correctly.',
             'group' => 'DNA Module',
         );
@@ -18,5 +18,33 @@ class dnaTestCase extends DrupalUnitTestCase {
         $input = 'CGCT';
         $result = matchDNA($input);
         $this->assertEqual($result, 'GCGA', $description);
+    }
+}
+
+class dnaFunctionalTestCase extends DrupalWebTestCase {
+    public static function getInfo() {
+        return array(
+            'name' => 'DNA Module Functional Tests',
+            'description' => 'Test that the form and success page display properly',
+            'group' => 'DNA Module',
+        );
+    }
+
+    public function setUp() {
+        parent::setUp(array('dna'));
+    }
+
+    public function testDNAForm() {
+        $this->drupalGet('dna_match');
+        $string_to_find = 'Enter one half of a DNA Helix and the other half will be returned.';
+        $this->assertText($string_to_find, 'The text on the page is correct');
+
+        $field_name = 'sequence';
+        $field_value = '';
+        $this->assertFieldByName($field_name, $field_value, $message = 'Sequence field exists and is empty.');
+
+        $field_name = 'submit_button';
+        $field_value = 'Submit';
+        $this->assertFieldByName($field_name, $field_value, $message = 'Submit button exists.');
     }
 }

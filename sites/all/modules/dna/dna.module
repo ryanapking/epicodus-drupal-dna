@@ -26,6 +26,7 @@ function dna_form() {
             '#element_validate' => array('sequence_input_validation'),
         );
     $form['submit'] = array(
+            '#name' => 'submit_button',
             '#type' => 'submit',
             '#value' => 'Submit',
         );
