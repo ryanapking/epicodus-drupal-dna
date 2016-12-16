@@ -8,7 +8,7 @@ class dnaTestCase extends DrupalUnitTestCase {
         );
     }
 
-    function testSingleLetter() {
+    function testMatchDNA() {
         $description = "When sent the letter 'C', function should return 'G'";
         $input = 'C';
         $result = matchDNA($input);
@@ -17,6 +17,6 @@ class dnaTestCase extends DrupalUnitTestCase {
         $description = "When sent the letters 'CGCT', function should return 'GCGA'";
         $input = 'CGCT';
         $result = matchDNA($input);
-        $this->assertEqual($result, 'G', $description);
+        $this->assertEqual($result, 'GCGA', $description);
     }
 }
