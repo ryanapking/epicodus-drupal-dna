@@ -2,5 +2,6 @@ name = DNA
 description = Takes in one half of a DNA helix and outputs the other half.
 package = Epicodus Code Review
 core = 7.x
+dependencies[] = simpletest
 files[] = recent_news.module
-files[] = recent_news.test
+files[] = dna.test
