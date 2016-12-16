@@ -23,12 +23,24 @@ function dna_form() {
             '#title' => 'DNA Sequence',
             '#type' => 'textfield',
             '#description' => 'Enter one half of a DNA Helix and the other half will be returned',
+            '#element_validate' => array('sequence_input_validation'),
         );
     $form['submit'] = array(
             '#type' => 'submit',
             '#value' => 'Submit',
         );
     return $form;
+}
+
+function sequence_input_validation($element) {
+    $element['#value'] = strtoupper($element['#value']);
+    $valid_letters = ['A', 'T', 'C', 'G'];
+    $letters = str_split($element['#value']);
+    foreach($letters as $letter) {
+        if (!in_array($letter, $valid_letters)) {
+            form_error($element, t("Your phrase includes unallowed characters."));
+        }
+    }
 }
 
 function dna_form_submit($form, &$form_state) {
